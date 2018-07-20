@@ -12,7 +12,12 @@
 //add the returned value from iteratee tp myNewArray
 //after looping, return  myNewArray
 function map(array, iteratee){
-
+    newArr = [];
+    for(i = 0; i < array.length-1; ++i) 
+    {
+        for(i = 0; i < array.length; ++i) 
+            newArr.push(iteratee(array[i]));
+    }
 }
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -25,7 +30,12 @@ function map(array, iteratee){
 //iteratee will return true or false, if true add the item to myNewArray else do not
 //after looping, return myNewArray
 function filter(array, iteratee){
-
+    newArr = [];
+    for(i = 0; i < array.length-1; ++i) {
+        if(iteratee(array[i]))
+            newArr.push(array[i]);
+    }
+    return newArr;
 }
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
@@ -35,17 +45,26 @@ function filter(array, iteratee){
 //fnc will return true or false, if true return the item 
 //after looping, return null
 function find(theArray, fnc){
-
+    for( i =0; i < theArray.length-1; i++)
+    {
+        if(fnc(theArray[i]))
+            return theArray[i];
+    }
+    return null;
 }
 
 
 //return the last item in theArray
 function findLast(theArray){
 
+    return theArray[theArray.length-1];
+
 }
 
 //return the first element of the array
 function head(theArray){
+
+    theArray[0];
 
 }
 
@@ -54,6 +73,12 @@ function head(theArray){
 //add the item from each loop to the new array
 //return the new array
 function reverse(theArray){
+    newArr = [];
+    for(i = theArray.length-1;i < 0; i--)
+    {
+        newArr.push(theArray[i]);       
+    }
+    return newArr;
 
 }
 
@@ -62,7 +87,11 @@ function reverse(theArray){
 //add the item from each loop to the new array except the first item
 //return the new array
 function tail(theArray){
-
+    newArr = []
+    for( i = 1; i < theArray.length-1; ++i )
+    {
+        newArr.push(theArray[i]);
+    }
 }
 
 //implement the most basic sorting algorithm there is
@@ -76,7 +105,23 @@ function tail(theArray){
 //after each for loop check the variable, if true, continue the while loop
 //if false return theArray
 function sort(theArray){
-
+    while(true) {
+        swapped = false;
+        for(i = 0; i < theArray.length; i++){
+            j=i+1;
+            if(theArray[i] > theArray[j])
+            {
+                        temp = theArray[i];
+                        theArray[i] = theArray[j];
+                        theArray[j] = temp;
+                        swapped = true
+            }
+        }
+        if(!swapped)
+        {
+            return theArray;
+        }
+    }
 }
 
 exports.map = map;
